@@ -1,0 +1,14 @@
+{
+  "name": "reliefweb/api-php-client",
+  "description": "Really simple php client for the ReliefWeb API.",
+  "keywords": ["reliefweb","api", "php"],
+  "type": "application",
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "RWAPIClient": "src/"
+    }
+  }
+}
