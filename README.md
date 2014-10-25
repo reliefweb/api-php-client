@@ -1,7 +1,12 @@
-api-php-cient
-=============
+RefiefWeb API - PHP Client
+==========================
 
-Really simple php client for the ReliefWeb API.
+Really simple php client for the ReliefWeb API (v1).
+
+API documentation
+-----------------
+
+See the [ReliefWeb API documentation](http://reliefweb.int/help/api).
 
 Install
 -------
@@ -99,8 +104,3 @@ $item = $query->id(548925)->profile('minimal')->execute()->item();
 echo $item['fields']['title'] . "\n";
 
 ```
-
-Results
--------
-
-See the [ReliefWeb API documentation](http://reliefweb.int/help/api).
