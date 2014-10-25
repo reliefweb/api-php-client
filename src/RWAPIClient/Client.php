@@ -48,7 +48,9 @@ class Client {
 
     // Add the GET data to the url.
     if ($method === 'GET') {
-      $data = http_build_query($data, '', '&');
+      if (is_array($data)) {
+        $data = http_build_query($data, '', '&');
+      }
       $url .= !empty($data) ? '?' . $data : '';
     }
 
@@ -56,7 +58,9 @@ class Client {
 
     // Add the POST data to the request.
     if ($method === 'POST') {
-      $data = json_encode($data);
+      if (is_array($data)) {
+        $data = json_encode($data);
+      }
       $headers = array(
         'Content-Type: application/json',
         'Content-Length: ' . strlen($data),
