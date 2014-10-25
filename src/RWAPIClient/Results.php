@@ -99,13 +99,13 @@ class Results {
       case 'data':
         return isset($facet['data']) ? $facet['data'] : array();
 
-      case 'missing': {
+      case 'missing':
         return isset($facet['missing']) ? $facet['missing'] : 0;
 
-      case 'type': {
+      case 'type':
         return isset($facet['type']) ? $facet['type'] : '';
 
-      case 'more': {
+      case 'more':
         return isset($facet['more']) ? $facet['more'] : FALSE;
 
       default:
