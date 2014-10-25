@@ -85,17 +85,36 @@ class Results {
   }
 
   /**
-   * Get a facet.
+   * Get a facet or facet property.
    *
+   * @param string $property
+   *   Facet property to return.
    * @return array
    *   Facet data.
    */
-  public function facet($name) {
-    return !empty($this->data['embedded']['facets'][$name]) ? $this->data['embedded']['facets'][$name] : array();
+  public function facet($name, $property = NULL) {
+    $facet = !empty($this->data['embedded']['facets'][$name]) ? $this->data['embedded']['facets'][$name] : array();
+
+    switch ($property) {
+      case 'data':
+        return isset($facet['data']) ? $facet['data'] : array();
+
+      case 'missing': {
+        return isset($facet['missing']) ? $facet['missing'] : 0;
+
+      case 'type': {
+        return isset($facet['type']) ? $facet['type'] : '';
+
+      case 'more': {
+        return isset($facet['more']) ? $facet['more'] : FALSE;
+
+      default:
+        return $facet;
+    }
   }
 
   /**
-   * Get the raw data, NULL is case of query error.
+   * Get the raw data, NULL in case of query error.
    *
    * @return array
    *   Raw data.

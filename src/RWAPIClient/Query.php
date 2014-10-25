@@ -276,16 +276,19 @@ class Query {
   /**
    * Execute the query against the client.
    *
+   * @param boolean $raw
+   *   Indicates whether to return the raw data or the wrapped data.
    * @return \RWAPIClient\Results
    *   Data returned by the API.
    */
-  public function execute() {
+  public function execute($raw = FALSE) {
     $data = NULL;
     if (isset($this->client) && !empty($this->resource)) {
       $path = $this->resource . (!empty($this->id) ? '/' . $this->id : '');
       $method = !empty($this->id) ? 'GET' : 'POST';
       $data = $this->client->query($path, $this->build(), $method);
     }
-    return new \RWAPIClient\Results($data);
+    $results = new \RWAPIClient\Results($data);
+    return $raw ? $results->raw() : $results;
   }
 }
