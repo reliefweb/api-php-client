@@ -14,13 +14,31 @@ class Client {
   protected $url;
 
   /**
+   * Application name.
+   *
+   * @var string
+   */
+  protected $appname;
+
+  /**
    * Build client.
    *
    * @param string $host
    *   API base url.
    */
-  public function __construct($url = 'http://api.rwlabs.org/v1') {
+  public function __construct($url = 'https://api.reliefweb.int/v1') {
     $this->url = $url;
+  }
+
+  /**
+   * Set the name of the application or website using the API.
+   *
+   * @param string $appname
+   *   Application name.
+   */
+  public function appname($appname = "") {
+    $this->appname = $appname;
+    return $this;
   }
 
   /**
@@ -37,10 +55,13 @@ class Client {
    * @param integer $timeout
    *   Request timeout.
    * @return array
-   *   Data received by the API.
+   *   Data received by the API or null in case of error.
    */
   public function query($resource, $data = array(), $method = 'POST', $timeout = 2) {
     $url = $this->url . '/' . $resource;
+
+    // Set the appname parameter.
+    $url .= '?appname=' . (!empty($this->appname) ? urlencode($this->appname) : 'rw-api-php-client');
 
     if ($data instanceof \RWAPIClient\Query) {
       $data = $data->build();
@@ -51,7 +72,7 @@ class Client {
       if (is_array($data)) {
         $data = http_build_query($data, '', '&');
       }
-      $url .= !empty($data) ? '?' . $data : '';
+      $url .= !empty($data) ? '&' . $data : '';
     }
 
     $curl = curl_init($url);

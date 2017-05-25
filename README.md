@@ -3,6 +3,11 @@ RefiefWeb API - PHP Client
 
 Really simple php client for the ReliefWeb API (v1).
 
+API url
+-------
+
+https://api.reliefweb.int/v1
+
 API documentation
 -----------------
 
@@ -27,6 +32,9 @@ include 'vendor/autoload.php';
 
 // Create a client.
 $client = new \RWAPIClient\Client();
+
+// Set the name of the application or website using the API.
+$client->appname('example.com');
 
 // Create a query to a resource.
 $query = new \RWAPIClient\Query('reports', $client);
@@ -93,6 +101,9 @@ include 'vendor/autoload.php';
 
 // Create a client.
 $client = new \RWAPIClient\Client();
+
+// Set the name of the application or website using the API.
+$client->appname('example.com');
 
 // Create a query to a resource.
 $query = new \RWAPIClient\Query('reports', $client);
