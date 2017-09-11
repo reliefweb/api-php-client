@@ -11,7 +11,7 @@ https://api.reliefweb.int/v1
 API documentation
 -----------------
 
-See the [ReliefWeb API documentation](http://reliefweb.int/help/api).
+See the [ReliefWeb API documentation](https://reliefweb.int/help/api).
 
 Install
 -------
