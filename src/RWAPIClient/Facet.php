@@ -2,6 +2,8 @@
 
 namespace RWAPIClient;
 
+use RWAPIClient\Filter as Filter;
+
 /**
  * ReliefWeb API Client Facet.
  */
@@ -20,7 +22,7 @@ class Facet {
    *   Facet name.
    * @param string $field
    *   Field used to compute the facet data.
-   * @param integer $limit
+   * @param int $limit
    *   Maximum number of items to return for the facet.
    */
   public function __construct($name = '', $field = '', $limit = NULL) {
@@ -40,6 +42,7 @@ class Facet {
    *
    * @param string $name
    *   Facet name.
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
@@ -53,6 +56,7 @@ class Facet {
    *
    * @param string $field
    *   Facet field.
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
@@ -66,6 +70,7 @@ class Facet {
    *
    * @param string $limit
    *   Facet limit.
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
@@ -81,6 +86,7 @@ class Facet {
    *   Order type (value or count).
    * @param string $direction
    *   Direction of the ordering (asc or desc).
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
@@ -94,10 +100,11 @@ class Facet {
    *
    * @param \RWAPIClient\Filter $filter
    *   Facet filter.
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
-  public function filter(\RWAPIClient\Filter $filter) {
+  public function filter(Filter $filter) {
     $this->build['filter'] = $filter->build();
     return $this;
   }
@@ -107,6 +114,7 @@ class Facet {
    *
    * @param string $scope
    *   Facet scope.
+   *
    * @return \RWAPIClient\Facet
    *   This object.
    */
@@ -124,4 +132,5 @@ class Facet {
   public function build() {
     return $this->build;
   }
+
 }

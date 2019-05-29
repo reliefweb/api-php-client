@@ -2,6 +2,8 @@
 
 namespace RWAPIClient;
 
+use RWAPIClient\Filter as Filter;
+
 /**
  * ReliefWeb API Client Filter.
  */
@@ -18,7 +20,7 @@ class Filter {
    *
    * @param string $operator
    *   Filter operator in case of multiple conditions.
-   * @param boolean $negate
+   * @param bool $negate
    *   Indicates if the filter should be used a NOT filter.
    */
   public function __construct($operator = 'AND', $negate = FALSE) {
@@ -37,8 +39,9 @@ class Filter {
    *   or range array with 'from' and/or 'to' keys.
    * @param string $operator
    *   Operator in case of multiple values.
-   * @param boolean $negate
+   * @param bool $negate
    *   Indicates if the filter should be inclusive or exclusive (NOT).
+   *
    * @return \RWAPIClient\Filter
    *   This object.
    */
@@ -64,10 +67,11 @@ class Filter {
    *
    * @param \RWAPIClient\Filter $filter
    *   Filter condition.
+   *
    * @return \RWAPIClient\Filter
    *   This object.
    */
-  public function filter(\RWAPIClient\Filter $filter) {
+  public function filter(Filter $filter) {
     $this->build['conditions'][] = $filter->build();
     return $this;
   }
@@ -77,6 +81,7 @@ class Filter {
    *
    * @param string $operator
    *   Filter operator.
+   *
    * @return \RWAPIClient\Filter
    *   This object.
    */
@@ -88,8 +93,9 @@ class Filter {
   /**
    * Set the negation of the filter.
    *
-   * @param boolean $negate
+   * @param bool $negate
    *   Indicates if the filter should be inclusive or exclusive (NOT).
+   *
    * @return \RWAPIClient\Filter
    *   This object.
    */
@@ -113,4 +119,5 @@ class Filter {
     }
     return $this->build;
   }
+
 }

@@ -2,6 +2,8 @@
 
 namespace RWAPIClient;
 
+use RWAPIClient\Query as Query;
+
 /**
  * ReliefWeb API Client.
  */
@@ -30,7 +32,7 @@ class Client {
   /**
    * Build client.
    *
-   * @param string $host
+   * @param string $url
    *   API base url.
    */
   public function __construct($url = 'https://api.reliefweb.int/v1') {
@@ -68,10 +70,11 @@ class Client {
    *   Resource name.
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
-   * @param integer $method
+   * @param int $method
    *   POST or GET method.
-   * @param integer $timeout
+   * @param int $timeout
    *   Request timeout.
+   *
    * @return array
    *   Data received by the API or null in case of error.
    */
@@ -91,7 +94,7 @@ class Client {
     // Add the parameters to the url.
     $url .= '?' . http_build_query($parameters, '', '&');
 
-    if ($data instanceof \RWAPIClient\Query) {
+    if ($data instanceof Query) {
       $data = $data->build();
     }
 
@@ -115,7 +118,6 @@ class Client {
         'Content-Length: ' . strlen($data),
       );
 
-
       curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
       curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
     }
@@ -136,6 +138,7 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
@@ -148,6 +151,7 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
@@ -160,6 +164,7 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
@@ -172,6 +177,7 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
@@ -184,6 +190,7 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
@@ -196,10 +203,12 @@ class Client {
    *
    * @param \RWAPIClient\Query|array $data
    *   Data to pass to the API.
+   *
    * @return array
    *   Data received by the API.
    */
   public function disasters($data = array()) {
     return $this->query('disasters', $data);
   }
+
 }

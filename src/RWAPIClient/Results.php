@@ -19,14 +19,14 @@ class Results {
    * @param array $data
    *   Raw data from the API.
    */
-  public function __construct($data) {
+  public function __construct(array $data) {
     $this->data = $data;
   }
 
   /**
    * Check if the data is valid.
    *
-   * @return boolean
+   * @return bool
    *   Data is valid or not.
    */
   public function error() {
@@ -36,7 +36,7 @@ class Results {
   /**
    * Get the total of resource items matching the query.
    *
-   * @return integer
+   * @return int
    *   Total.
    */
   public function total() {
@@ -46,7 +46,7 @@ class Results {
   /**
    * Get the total of resource items returned by the query.
    *
-   * @return integer
+   * @return int
    *   Count.
    */
   public function count() {
@@ -65,6 +65,7 @@ class Results {
 
   /**
    * Get the resource item returned by the query.
+   *
    * Useful when querying for a single item.
    *
    * @return array
@@ -87,8 +88,11 @@ class Results {
   /**
    * Get a facet or facet property.
    *
+   * @param string $name
+   *   Facet name.
    * @param string $property
    *   Facet property to return.
+   *
    * @return array
    *   Facet data.
    */
@@ -122,4 +126,5 @@ class Results {
   public function raw() {
     return $this->data;
   }
+
 }
