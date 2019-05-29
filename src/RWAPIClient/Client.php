@@ -21,6 +21,13 @@ class Client {
   protected $appname;
 
   /**
+   * Hypermedia switch.
+   *
+   * @var bool
+   */
+  protected $hypermedia = FALSE;
+
+  /**
    * Build client.
    *
    * @param string $host
@@ -38,6 +45,17 @@ class Client {
    */
   public function appname($appname = "") {
     $this->appname = $appname;
+    return $this;
+  }
+
+  /**
+   * Enable/Disable hypermedia links in the response payload.
+   *
+   * @param bool $enable
+   *   TRUE to enable.
+   */
+  public function hypermedia($enable = FALSE) {
+    $this->hypermedia = $enable;
     return $this;
   }
 
@@ -60,8 +78,18 @@ class Client {
   public function query($resource, $data = array(), $method = 'POST', $timeout = 2) {
     $url = $this->url . '/' . $resource;
 
-    // Set the appname parameter.
-    $url .= '?appname=' . (!empty($this->appname) ? urlencode($this->appname) : 'rw-api-php-client');
+    $parameters = array(
+      'appname' => !empty($this->appname) ? $this->appname : 'rw-api-php-client',
+    );
+
+    // Return the slim version of the payload without the hypermedia links
+    // unless specified otherwise.
+    if ($this->hypermedia !== TRUE) {
+      $parameters['slim'] = 1;
+    }
+
+    // Add the parameters to the url.
+    $url .= '?' . http_build_query($parameters, '', '&');
 
     if ($data instanceof \RWAPIClient\Query) {
       $data = $data->build();

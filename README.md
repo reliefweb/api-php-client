@@ -115,3 +115,25 @@ $item = $query->id(548925)->profile('minimal')->execute()->item();
 echo $item['fields']['title'] . "\n";
 
 ```
+
+Hypermedia
+----------
+
+The ReliefWeb API contains hypermedia links which are useful when exploring
+the API resources. Example:
+
+```json
+{
+  "href": "https://api.reliefweb.int/v1/reports/2905933"
+}
+```
+
+They can be turned on by setting:
+
+```php
+$client->hypermedia(TRUE);
+```
+
+**Note:** Those hypermedia links were originally always returned by this client
+but not used anywhere. Thus, they are now turned off by default to reduce
+bandwidth usage.
