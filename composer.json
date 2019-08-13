@@ -1,14 +1,41 @@
 {
   "name": "reliefweb/api-php-client",
   "description": "Really simple php client for the ReliefWeb API.",
-  "keywords": ["reliefweb","api", "php"],
+  "keywords": [
+    "reliefweb",
+    "api",
+    "php"
+  ],
   "type": "application",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packagist.org"
+    },
+    {
+      "packagist": false
+    }
+  ],
   "require": {
     "php": ">=5.3.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.3.*",
+    "drupal/coder": "8.3.*"
   },
   "autoload": {
     "psr-0": {
       "RWAPIClient": "src/"
     }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "./composer-phpcs-install.sh",
+      "git config core.hooksPath git-hooks"
+    ],
+    "post-update-cmd": [
+      "./composer-phpcs-install.sh",
+      "git config core.hooksPath git-hooks"
+    ]
   }
 }

@@ -16,7 +16,7 @@ See the [ReliefWeb API documentation](https://reliefweb.int/help/api).
 Install
 -------
 
-Run `composer install`.
+Run `composer install --no-dev -o`.
 
 Usage
 -----
@@ -137,3 +137,8 @@ $client->hypermedia(TRUE);
 **Note:** Those hypermedia links were originally always returned by this client
 but not used anywhere. Thus, they are now turned off by default to reduce
 bandwidth usage.
+
+Dependencies
+------------
+
+Ensure no dev dependencies are added when committed by running `composer install --no-dev -o`.

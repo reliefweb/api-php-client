@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Lint php and css code.
+
+# We only lint files in the src directory.
+include='^src/'
+exclude=' '
+
+# The linter path is relative to the root of the repository.
+linter="vendor/bin/phpcs"
+options='--standard=ruleset.xml'
+
+message='Linting staged PHP/CSS files...'
+
+# Load and execute the linting code.
+. "$(dirname "$0")/lint-common"

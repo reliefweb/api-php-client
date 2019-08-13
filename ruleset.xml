@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="ReliefWeb">
+  <description>ReliefWeb - Drupal coding standard.</description>
+
+  <!-- Use the Drupal standard as base -->
+  <rule ref="Drupal"/>
+
+  <!-- Use Drupal 7 rules. -->
+  <config name="drupal_core_version" value="7"/>
+
+</ruleset>

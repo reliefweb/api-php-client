@@ -1,0 +1,23 @@
+#!/bin/sh
+
+base=$(dirname "$0")
+result=0
+
+# Get the list of pre-commit scripts.
+scripts=$(find "$base/scripts/pre-commit" -maxdepth 1 ! -name '*-common' -type f -perm -111 -print0 | xargs -0);
+
+if [ -n "$scripts" ]; then
+  # Execute all the pre-commit scripts.
+  for script in $scripts; do
+    "$script"
+    if [ "$?" -eq 1 ]; then
+      result=1
+    fi
+  done
+fi
+
+# The commit will be aborted if any of the pre-commit script failed.
+if [ "$result" -eq 1 ]; then
+  printf "\033[0;31mPre-commit validation failed. Aborting commit!\033[0m\n"
+  exit 1
+fi
