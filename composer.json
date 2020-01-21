@@ -6,7 +6,7 @@
     "api",
     "php"
   ],
-  "type": "application",
+  "type": "drupal-library",
   "repositories": [
     {
       "type": "composer",
