@@ -183,8 +183,8 @@ class Query {
    *   This object.
    */
   public function range($offset, $limit) {
-    $this->build['limit'] = $offset;
-    $this->build['offset'] = $limit;
+    $this->build['offset'] = $offset;
+    $this->build['limit'] = $limit;
     return $this;
   }
 
